@@ -1,24 +1,11 @@
-module PixelMonitorRecHit = SiPixelMonitorRecHit {
-  bool associatePixel = true
-  bool associateStrip = false
-  bool associateRecoTracks = false
-  vstring ROUList = {
-        #For running only strip or pixel comment out the appropriate strings
-        #TIB
-        #"TrackerHitsTIBLowTof","TrackerHitsTIBHighTof",
-        #TID
-        #"TrackerHitsTIDLowTof","TrackerHitsTIDHighTof",
-        #TOB
-        #"TrackerHitsTOBLowTof","TrackerHitsTOBHighTof",
-        #TEC
-        #"TrackerHitsTECLowTof","TrackerHitsTECHighTof",
-        #BPIX
-        "TrackerHitsPixelBarrelLowTof","TrackerHitsPixelBarrelHighTof",
-        #FPIX
-        "TrackerHitsPixelEndcapLowTof","TrackerHitsPixelEndcapHighTof"
-  }
-
-  untracked string outputFile = 'pixelrechitshisto.root'
-  untracked bool verbose = true
-  InputTag src = siPixelRecHits
+module SiPixelRecHitSource = SiPixelRecHitSource { 
+	bool associatePixel = true
+	bool associateStrip = false
+	bool associateRecoTracks = false
+	vstring ROUList = {
+	"TrackerHitsPixelBarrelLowTof", "TrackerHitsPixelBarrelHighTof", 
+	"TrackerHitsPixelEndcapLowTof", "TrackerHitsPixelEndcapHighTof"
+	}
+	InputTag src = siPixelRecHits
+	string outputFile = "Pixel_DQM_RecHits.root"
 }
