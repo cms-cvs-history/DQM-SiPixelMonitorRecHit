@@ -1,4 +1,5 @@
 module SiPixelRecHitSource = SiPixelRecHitSource { 
 	InputTag src = siPixelRecHits
 	string outputFile = "Pixel_DQM_RecHits.root"
+	untracked bool saveFile = false
 }
