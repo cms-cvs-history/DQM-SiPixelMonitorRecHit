@@ -1,7 +1,7 @@
 import FWCore.ParameterSet.Config as cms
 
 process = cms.Process("SiPixelMonitorRecHitsProcess")
-process.load("MagneticField.Engine.volumeBasedMagneticField_cfi")
+process.load("Configuration.StandardSequences.MagneticField_cff")
 
 process.load("Geometry.TrackerGeometryBuilder.trackerGeometry_cfi")
 
@@ -16,9 +16,12 @@ process.load("DQMServices.Components.DQMEnvironment_cfi")
 process.load("Configuration.StandardSequences.Reconstruction_cff")
 
 process.load("Configuration.StandardSequences.FrontierConditions_GlobalTag_cff")
+process.GlobalTag.connect ="sqlite_file:/afs/cern.ch/user/m/malgeri/public/globtag/CRUZET3_V7.db"
+process.GlobalTag.globaltag = "CRUZET3_V7::All"
+process.es_prefer_GlobalTag = cms.ESPrefer('PoolDBESSource','GlobalTag')
 
 process.maxEvents = cms.untracked.PSet(
-    input = cms.untracked.int32(-1)
+    input = cms.untracked.int32(10)
 )
 process.source = cms.Source("PoolSource",
     debugFlag = cms.untracked.bool(True),
@@ -37,6 +40,7 @@ process.SiPixelRecHitSource.saveFile = True
 process.SiPixelRecHitSource.isPIB = False
 process.SiPixelRecHitSource.slowDown = False
 process.SiPixelRecHitSource.modOn = True
+process.SiPixelRecHitSource.twoDimOn = True
 process.SiPixelRecHitSource.ladOn = False
 process.SiPixelRecHitSource.layOn = False
 process.SiPixelRecHitSource.phiOn = False
@@ -44,5 +48,4 @@ process.SiPixelRecHitSource.bladeOn = False
 process.SiPixelRecHitSource.ringOn = False
 process.SiPixelRecHitSource.diskOn = False
 process.DQM.collectorHost = ''
-process.GlobalTag.globaltag = cms.untracked.string("IDEAL_V1::All")
 
